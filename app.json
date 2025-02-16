@@ -1,4 +1,10 @@
 {
-  "name": "OmnexusMobile",
-  "displayName": "OmnexusMobile"
+  "expo": {
+    "name": "OmnexusMobile",
+    "slug": "omnexusmobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "platforms": ["ios", "android"],
+    "entryPoint": "index.js"
+  }
 }

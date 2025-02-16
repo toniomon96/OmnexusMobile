@@ -1,4 +1,4 @@
-package com.omnexusmobile
+package com.toniomon96.omnexusmobile
 
 import android.app.Application
 import com.facebook.react.PackageList

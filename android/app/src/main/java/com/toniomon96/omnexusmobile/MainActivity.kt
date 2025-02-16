@@ -1,4 +1,4 @@
-package com.omnexusmobile
+package com.toniomon96.omnexusmobile
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
