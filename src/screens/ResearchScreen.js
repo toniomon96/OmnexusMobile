@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Image } from "react-native";
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import globalStyles from "../styles/globalStyles";
 
 export default function ResearchScreen() {
@@ -8,7 +9,7 @@ export default function ResearchScreen() {
       <View style={styles.header}>
         <Text style={styles.title}>Research Hub</Text>
         <TouchableOpacity>
-          <Image source={require("../assets/bell.png")} style={styles.icon} />
+          <Ionicons name="notifications-outline" size={24} color="black" />
         </TouchableOpacity>
       </View>
       
@@ -27,10 +28,10 @@ export default function ResearchScreen() {
         <Text style={styles.cardDate}>📅 Published Jan 2025</Text>
         <View style={styles.cardActions}>
           <TouchableOpacity>
-            <Image source={require("../assets/bookmark.png")} style={styles.actionIcon} />
+            <Ionicons name="bookmark-outline" size={24} color="black" />
           </TouchableOpacity>
           <TouchableOpacity>
-            <Image source={require("../assets/share.png")} style={styles.actionIcon} />
+            <Ionicons name="share-outline" size={24} color="black" />
           </TouchableOpacity>
         </View>
       </View>
@@ -42,10 +43,10 @@ export default function ResearchScreen() {
         <Text style={styles.cardDate}>📅 Published Feb 2025</Text>
         <View style={styles.cardActions}>
           <TouchableOpacity>
-            <Image source={require("../assets/bookmark.png")} style={styles.actionIcon} />
+            <Ionicons name="bookmark-outline" size={24} color="black" />
           </TouchableOpacity>
           <TouchableOpacity>
-            <Image source={require("../assets/share.png")} style={styles.actionIcon} />
+            <Ionicons name="share-outline" size={24} color="black" />
           </TouchableOpacity>
         </View>
       </View>
@@ -56,7 +57,6 @@ export default function ResearchScreen() {
 const styles = StyleSheet.create({
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 20 },
   title: { fontSize: 20, fontWeight: "bold" },
-  icon: { width: 24, height: 24 },
   searchBar: { backgroundColor: "#f0f0f0", padding: 10, borderRadius: 8, marginBottom: 15 },
   tabs: { flexDirection: "row", marginBottom: 15 },
   tab: { fontSize: 16, color: "#777", marginRight: 20 },
@@ -68,5 +68,4 @@ const styles = StyleSheet.create({
   cardDescription: { color: "#B0B0B0", fontSize: 14 },
   cardDate: { color: "#B0B0B0", fontSize: 12, marginTop: 5 },
   cardActions: { flexDirection: "row", justifyContent: "space-between", marginTop: 10 },
-  actionIcon: { width: 20, height: 20, tintColor: "#fff" },
 });

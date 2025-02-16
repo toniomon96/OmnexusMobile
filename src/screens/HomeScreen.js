@@ -1,15 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
 import globalStyles from "../styles/globalStyles";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function HomeScreen({ navigation }) {
   return (
     <ScrollView style={globalStyles.container}>
       <View style={styles.header}>
-        <Image source={require("../assets/avatar.png")} style={styles.avatar} />
+        <Ionicons name="person-circle-outline" size={40} color="black" />
         <Text style={styles.username}>Hi, Alex</Text>
         <TouchableOpacity>
-          <Image source={require("../assets/bell.png")} style={styles.icon} />
+          <Ionicons name="notifications-outline" size={24} color="black" />
         </TouchableOpacity>
       </View>
       
