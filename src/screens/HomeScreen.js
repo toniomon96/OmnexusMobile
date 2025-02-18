@@ -1,75 +1,74 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
-import globalStyles from "../styles/globalStyles";
-import { Ionicons } from "@expo/vector-icons";
+import { View, Text, TouchableOpacity, ScrollView, SafeAreaView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/Feather"; 
+import globalStyles from "../styles/globalStyles"; 
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen() {
+  const navigation = useNavigation();
+  const userName = "Alex"; 
+
   return (
-    <ScrollView style={globalStyles.container}>
-      <View style={styles.header}>
-        <Ionicons name="person-circle-outline" size={40} color="black" />
-        <Text style={styles.username}>Hi, Alex</Text>
-        <TouchableOpacity>
-          <Ionicons name="notifications-outline" size={24} color="black" />
-        </TouchableOpacity>
-      </View>
-      
-      <View style={styles.insightCard}>
-        <Text style={styles.insightTitle}>Daily Research Insight</Text>
-        <Text style={styles.insightHeading}>Impact of Sleep Quality on Cognitive Performance</Text>
-        <Text style={styles.insightText}>New research suggests that consistent 7-9 hour sleep patterns significantly improve memory retention and decision-making capabilities.</Text>
-        <TouchableOpacity>
-          <Text style={styles.readMore}>Read More →</Text>
-        </TouchableOpacity>
-      </View>
-      
-      <View style={styles.progressSection}>
-        <Text style={styles.sectionTitle}>Your Learning Progress</Text>
-        <View style={styles.progressCard}>
-          <Text style={styles.progressLabel}>Weekly Goal</Text>
-          <Text style={styles.progressValue}>4/5 Studies Reviewed</Text>
-          <View style={styles.progressBarBackground}>
-            <View style={styles.progressBarFill}></View>
+    <SafeAreaView style={globalStyles.safeContainer}> {/* ✅ Prevents content from touching the top */}
+      <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
+        {/* Header */}
+        <View style={globalStyles.header}>
+          <Text style={globalStyles.greeting}>Hello, {userName}</Text>
+          <View style={globalStyles.headerIcons}>
+            <TouchableOpacity>
+              <Icon name="bell" size={24} color="#fff" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+              <Icon name="user" size={28} color="#fff" style={globalStyles.profileIcon} />
+            </TouchableOpacity>
           </View>
-          <Text style={styles.progressPercentage}>80%</Text>
         </View>
-      </View>
-      
-      <View style={styles.recommendSection}>
-        <Text style={styles.sectionTitle}>Recommended for You</Text>
-        <View style={styles.recommendCard}>
-          <Text style={styles.recommendTitle}>Neuroscience Basics</Text>
-          <Text style={styles.recommendText}>Understanding Brain Function</Text>
+
+        <Text style={globalStyles.subheading}>Ready to learn something new?</Text>
+
+        {/* Daily Insight Card */}
+        <View style={globalStyles.insightCard}>
+          <Text style={globalStyles.insightTitle}>DAILY INSIGHT</Text>
+          <Text style={globalStyles.insightHeading}>Impact of Sleep Quality on Cognitive Performance</Text>
+          <Text style={globalStyles.insightDescription}>
+            New research suggests that consistent 7-9 hour sleep patterns can improve memory retention by up to 40%.
+          </Text>
+          <TouchableOpacity>
+            <Text style={globalStyles.readMore}>Read Full Study →</Text>
+          </TouchableOpacity>
         </View>
-        <View style={styles.recommendCard}>
-          <Text style={styles.recommendTitle}>Genetics & Performance</Text>
-          <Text style={styles.recommendText}>Latest Research Findings</Text>
+
+        {/* Progress Section */}
+        <View style={globalStyles.progressContainer}>
+          <View style={[globalStyles.progressCard, globalStyles.studiesReadCard]}>
+            <Icon name="book-open" size={28} color="#fff" />
+            <Text style={globalStyles.progressText}>Studies Read</Text>
+            <Text style={globalStyles.progressNumber}>24</Text>
+          </View>
+          <View style={[globalStyles.progressCard, globalStyles.studyStreakCard]}>
+            <Icon name="award" size={28} color="#fff" />
+            <Text style={globalStyles.progressText}>Study Streak</Text>
+            <Text style={globalStyles.progressNumber}>7 days</Text>
+          </View>
         </View>
-      </View>
-    </ScrollView>
+
+        {/* Recommended Studies */}
+        <View style={globalStyles.recommendedContainer}>
+          <Text style={globalStyles.recommendedHeading}>Recommended Studies</Text>
+          
+          <View style={globalStyles.studyCard}>
+            <Text style={globalStyles.category}>NUTRITION</Text>
+            <Text style={globalStyles.studyTitle}>Protein Timing and Muscle Growth</Text>
+            <Text style={globalStyles.studyDescription}>Meta-analysis of 23 studies on protein consumption patterns...</Text>
+          </View>
+
+          <View style={globalStyles.studyCard}>
+            <Text style={globalStyles.category}>EXERCISE SCIENCE</Text>
+            <Text style={globalStyles.studyTitle}>Recovery Methods Effectiveness</Text>
+            <Text style={globalStyles.studyDescription}>Comparative study of various recovery techniques...</Text>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 20 },
-  avatar: { width: 40, height: 40, borderRadius: 20 },
-  username: { fontSize: 18, fontWeight: "bold" },
-  icon: { width: 24, height: 24 },
-  insightCard: { backgroundColor: "#1A1A2E", padding: 15, borderRadius: 10, marginBottom: 20 },
-  insightTitle: { color: "#B0B0B0", fontSize: 14 },
-  insightHeading: { color: "#FFFFFF", fontSize: 18, fontWeight: "bold", marginVertical: 5 },
-  insightText: { color: "#B0B0B0", fontSize: 14 },
-  readMore: { color: "#FFD700", fontSize: 14, marginTop: 10 },
-  progressSection: { marginBottom: 20 },
-  sectionTitle: { fontSize: 16, fontWeight: "bold", marginBottom: 10 },
-  progressCard: { backgroundColor: "#FFFFFF", padding: 15, borderRadius: 10 },
-  progressLabel: { fontSize: 14, color: "#777" },
-  progressValue: { fontSize: 16, fontWeight: "bold" },
-  progressBarBackground: { height: 6, backgroundColor: "#E0E0E0", borderRadius: 3, marginVertical: 5 },
-  progressBarFill: { height: 6, backgroundColor: "#007BFF", borderRadius: 3, width: "80%" },
-  progressPercentage: { textAlign: "right", fontSize: 14, fontWeight: "bold" },
-  recommendSection: { marginBottom: 20 },
-  recommendCard: { backgroundColor: "#FFFFFF", padding: 15, borderRadius: 10, marginBottom: 10 },
-  recommendTitle: { fontSize: 16, fontWeight: "bold" },
-  recommendText: { fontSize: 14, color: "#777" },
-});
