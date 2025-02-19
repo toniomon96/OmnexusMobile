@@ -6,7 +6,6 @@ import StudyScreen from "../screens/StudyScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import CommunityScreen from "../screens/CommunityScreen";
 import { Ionicons } from "@expo/vector-icons";
-import globalStyles from "../styles/globalStyles";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +15,7 @@ export default function AppNavigator() {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarStyle: {
-            backgroundColor: "#0A1931",
+            backgroundColor: "#204065",
             height: 60, // ✅ Adjusted height for alignment
             borderTopWidth: 0, 
             paddingBottom: 8, // ✅ Prevents text from cutting off

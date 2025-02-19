@@ -6,8 +6,8 @@ const colors = {
   primaryGreen: "#28CC00", // ✅ Darker Green (Less Bright)
   primaryDarkBlue: "#1A3D68", 
   textWhite: "#FFFFFF",
-  backgroundDark: "#152A4E",
-  cardDark: "#1E3C72",
+  backgroundDark: "#162D50",
+  cardDark: "#204065",
 };
 
 export default StyleSheet.create({
@@ -23,45 +23,50 @@ export default StyleSheet.create({
   },
 
   // Header Section
-  header: { 
+  header: {  
     flexDirection: "row", 
-    justifyContent: "space-between", 
-    alignItems: "center",
-    marginBottom: 30, 
+    alignItems: "center",  
+    paddingHorizontal: 0,  
+    paddingTop: 10,  
+    marginBottom: 20,  
+    width: "100%",  
   },
+  
+  greetingContainer: { 
+    flex: 1,  // Ensures greeting stays fully left-aligned
+  },
+  
   greeting: { 
     fontSize: 24, 
     fontWeight: "bold", 
-    color: colors.textWhite, 
-    position: "absolute", 
-    top: 15, 
-    left: 5, 
+    color: colors.textWhite,
+    textAlign: "left",
   },
+  
   headerIcons: { 
     flexDirection: "row", 
-    position: "absolute", 
-    right: 20, 
-    top: 15, 
+    alignItems: "center",
+    justifyContent: "flex-end",  // Ensures icons stay fully right-aligned
+    gap: 15, 
   },
-
-  profileImage: { width: 35, height: 35, borderRadius: 50, marginLeft: 10 },
-
-  // Subheading
-  subheading: { 
-    fontSize: 18, 
-    color: "#D3D3D3", 
-    alignSelf: "flex-start", 
-    marginTop: 30, 
-    marginLeft: 5, 
-    marginBottom: 25, 
+  
+  energyContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
-
-  insightCard: {
-    backgroundColor: "#1A2D50",
-    padding: 15,
-    borderRadius: 10,
-    marginTop: 15,
+  
+  energyCount: {
+    color: "#32CD32",
+    fontSize: 16,
+    marginLeft: 5,
   },
+  
+  profileImage: { 
+    width: 35, 
+    height: 35, 
+    borderRadius: 50, 
+  },  
+  
   
   insightHeader: {
     flexDirection: "row",
@@ -92,15 +97,21 @@ export default StyleSheet.create({
   },
 
   // Progress Section
-  progressSection: { marginTop: 15 },
-  progressHeading: { color: "#fff", fontSize: 18, fontWeight: "bold" },
+  progressCard: {
+    backgroundColor: colors.cardDark,
+    padding: 15,
+    borderRadius: 10,
+    marginTop: 15,
+  },
+  progressSection: { marginTop: 5 },
+  progressHeading: { color: "#fff", fontSize: 18, fontWeight: "bold", marginTop: 0 },
   progressBarContainer: { marginTop: 10 },
   progressLabel: { color: "#fff", marginBottom: 5 },
   progressBar: { height: 6, borderRadius: 5 },
 
   // Recommended Studies
   recommendedCard: {
-    backgroundColor: "#1A2D50",
+    backgroundColor: colors.cardDark,
     padding: 15,
     borderRadius: 10,
     marginTop: 20,
@@ -114,7 +125,7 @@ export default StyleSheet.create({
   },
   
   studyCard: {
-    backgroundColor: "#243A5E", // Slightly darker than the card background
+    backgroundColor: "#162D50", // Slightly darker than the card background
     padding: 12,
     borderRadius: 8,
     marginTop: 10,
@@ -136,7 +147,7 @@ export default StyleSheet.create({
   navbar: { 
     flexDirection: "row", 
     justifyContent: "space-around", 
-    backgroundColor: "#0A1931", 
+    backgroundColor: colors.cardDark, 
     paddingVertical: 10, 
     borderTopWidth: 0, 
     elevation: 0, 
@@ -149,10 +160,10 @@ export default StyleSheet.create({
 
   // Points Card
   pointsContainer: {
-    backgroundColor: "#1A2D50",
+    backgroundColor: colors.cardDark,
     padding: 15,
     borderRadius: 10,
-    marginTop: 15,
+    marginTop: 0,
     justifyContent: "space-between",
   },
   
@@ -190,7 +201,7 @@ export default StyleSheet.create({
   
 
   insightCard: {
-    backgroundColor: "#1A2D50",
+    backgroundColor: colors.cardDark,
     padding: 15,
     borderRadius: 10,
     marginTop: 15,
@@ -227,7 +238,7 @@ export default StyleSheet.create({
   
   quickActionButton: {
     flex: 1,
-    backgroundColor: "#1A2D50",
+    backgroundColor: colors.cardDark,
     paddingVertical: 15,
     borderRadius: 10,
     alignItems: "center",

@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/Feather"; 
 import globalStyles from "../styles/globalStyles"; 
 import ProgressBar from "../styles/progressBarStyles"; // Import updated ProgressBar component
+import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -16,20 +17,31 @@ export default function HomeScreen() {
 
         {/* Header */}
         <View style={globalStyles.header}>
-          <Text style={globalStyles.greeting}>Hi, {userName}</Text>
+          {/* Left Side - Greeting */}
+          <View style={globalStyles.greetingContainer}>
+            <Text style={globalStyles.greeting}>Hi, {userName}</Text>
+          </View>
+
+          {/* Right Side - Icons */}
           <View style={globalStyles.headerIcons}>
+            {/* Energy Icon & Count */}
             <View style={globalStyles.energyContainer}>
-              <Icon name="zap" size={18} color="#32CD32" />
+              <FontAwesome5 name="bolt" size={24} solid color="#32FF00" />
               <Text style={globalStyles.energyCount}>{energyCount}</Text>
             </View>
+
+            {/* Bell Icon */}
             <TouchableOpacity>
               <Icon name="bell" size={24} color="#fff" />
             </TouchableOpacity>
+
+            {/* Profile Image */}
             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
               <Image source={require("../assets/profile-pic.jpg")} style={globalStyles.profileImage} />
             </TouchableOpacity>
           </View>
         </View>
+
 
 
         <View style={globalStyles.pointsContainer}>
@@ -58,11 +70,13 @@ export default function HomeScreen() {
         </View>
 
         {/* Learning Progress */}
-        <View style={globalStyles.progressSection}>
-          <Text style={globalStyles.progressHeading}>Learning Progress</Text>
-          <ProgressBar label="Fitness" percentage={65} color="#1E90FF" />
-          <ProgressBar label="Health" percentage={45} color="#32CD32" />
-          <ProgressBar label="Nutrition" percentage={80} color="#FFA500" />
+        <View style={globalStyles.progressCard}>
+          <View style={globalStyles.progressSection}>
+            <Text style={globalStyles.progressHeading}>Learning Progress</Text>
+            <ProgressBar label="Fitness" percentage={65} color="#1E90FF" />
+            <ProgressBar label="Health" percentage={45} color="#32CD32" />
+            <ProgressBar label="Nutrition" percentage={80} color="#FFA500" />
+          </View>
         </View>
 
         {/* Recommended Studies */}
