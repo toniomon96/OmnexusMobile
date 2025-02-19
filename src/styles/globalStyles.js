@@ -159,32 +159,6 @@ const recommendedStyles = StyleSheet.create({
   },
 });
 
-// Navbar Styles
-const navbarStyles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    backgroundColor: colors.cardDark,
-    paddingVertical: 10,
-    borderTopWidth: 0,
-    elevation: 0,
-    shadowOpacity: 0,
-  },
-  navItem: {
-    alignItems: "center",
-  },
-  navTextActive: {
-    fontSize: 12,
-    color: colors.primaryBlue,
-    marginTop: 2,
-  },
-  navTextInactive: {
-    fontSize: 12,
-    color: "#D3D3D3",
-    marginTop: 2,
-  },
-});
-
 // Points Card
 const pointsStyles = StyleSheet.create({
   container: {
@@ -261,7 +235,6 @@ export {
   insightStyles,
   progressStyles,
   recommendedStyles,
-  navbarStyles,
   pointsStyles,
   quickActionStyles,
 };
