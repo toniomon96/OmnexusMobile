@@ -1,73 +1,109 @@
 import React from "react";
-import { View, Text, TouchableOpacity, ScrollView, SafeAreaView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, SafeAreaView, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/Feather"; 
 import globalStyles from "../styles/globalStyles"; 
+import ProgressBar from "../styles/progressBarStyles"; // Import updated ProgressBar component
 
 export default function HomeScreen() {
   const navigation = useNavigation();
-  const userName = "Alex"; 
+  const userName = "Toni"; 
+  const energyCount = 12;
 
   return (
-    <SafeAreaView style={globalStyles.safeContainer}> {/* ✅ Prevents content from touching the top */}
+    <SafeAreaView style={globalStyles.safeContainer}> 
       <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
+
         {/* Header */}
         <View style={globalStyles.header}>
-          <Text style={globalStyles.greeting}>Hello, {userName}</Text>
+          <Text style={globalStyles.greeting}>Hi, {userName}</Text>
           <View style={globalStyles.headerIcons}>
+            <View style={globalStyles.energyContainer}>
+              <Icon name="zap" size={18} color="green" />
+              <Text style={globalStyles.energyCount}>{energyCount}</Text>
+            </View>
             <TouchableOpacity>
               <Icon name="bell" size={24} color="#fff" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-              <Icon name="user" size={28} color="#fff" style={globalStyles.profileIcon} />
+              <Image source={require("../assets/profile-pic.jpg")} style={globalStyles.profileImage} />
             </TouchableOpacity>
           </View>
         </View>
 
-        <Text style={globalStyles.subheading}>Ready to learn something new?</Text>
+
+        <View style={globalStyles.pointsContainer}>
+          <View style={globalStyles.pointsRow}>
+            <Text style={globalStyles.pointsText}>Total Points</Text>
+            <View style={globalStyles.levelBadge}>
+              <Text style={globalStyles.levelText}>Level 8</Text>
+            </View>
+          </View>
+          <Text style={globalStyles.pointsValue}>2,450</Text>
+        </View>
 
         {/* Daily Insight Card */}
         <View style={globalStyles.insightCard}>
-          <Text style={globalStyles.insightTitle}>DAILY INSIGHT</Text>
-          <Text style={globalStyles.insightHeading}>Impact of Sleep Quality on Cognitive Performance</Text>
-          <Text style={globalStyles.insightDescription}>
-            New research suggests that consistent 7-9 hour sleep patterns can improve memory retention by up to 40%.
+          <View style={globalStyles.insightHeader}>
+            <Text style={globalStyles.insightTitle}>Daily Insight</Text>
+            <Text style={globalStyles.newText}>New</Text> 
+          </View>
+          <Text style={globalStyles.insightText}>
+            Recent study shows high-intensity interval training (HIIT) improves 
+            cognitive function in adults aged 30-45.
           </Text>
           <TouchableOpacity>
-            <Text style={globalStyles.readMore}>Read Full Study →</Text>
+            <Text style={globalStyles.readMore}>Read More</Text>
           </TouchableOpacity>
         </View>
 
-        {/* Progress Section */}
-        <View style={globalStyles.progressContainer}>
-          <View style={[globalStyles.progressCard, globalStyles.studiesReadCard]}>
-            <Icon name="book-open" size={28} color="#fff" />
-            <Text style={globalStyles.progressText}>Studies Read</Text>
-            <Text style={globalStyles.progressNumber}>24</Text>
+
+        {/* Total Points */}
+        <View style={globalStyles.pointsContainer}>
+          <Text style={globalStyles.pointsText}>Total Points</Text>
+          <Text style={globalStyles.pointsValue}>2,450</Text>
+          <View style={globalStyles.levelBadge}>
+            <Text style={globalStyles.levelText}>Level 8</Text>
           </View>
-          <View style={[globalStyles.progressCard, globalStyles.studyStreakCard]}>
-            <Icon name="award" size={28} color="#fff" />
-            <Text style={globalStyles.progressText}>Study Streak</Text>
-            <Text style={globalStyles.progressNumber}>7 days</Text>
-          </View>
+        </View>
+
+        {/* Learning Progress */}
+        <View style={globalStyles.progressSection}>
+          <Text style={globalStyles.progressHeading}>Learning Progress</Text>
+          <ProgressBar label="Fitness" percentage={65} color="#1E90FF" />
+          <ProgressBar label="Health" percentage={45} color="#32CD32" />
+          <ProgressBar label="Nutrition" percentage={80} color="#FFA500" />
         </View>
 
         {/* Recommended Studies */}
-        <View style={globalStyles.recommendedContainer}>
+        <View style={globalStyles.recommendedCard}>
           <Text style={globalStyles.recommendedHeading}>Recommended Studies</Text>
           
-          <View style={globalStyles.studyCard}>
-            <Text style={globalStyles.category}>NUTRITION</Text>
-            <Text style={globalStyles.studyTitle}>Protein Timing and Muscle Growth</Text>
-            <Text style={globalStyles.studyDescription}>Meta-analysis of 23 studies on protein consumption patterns...</Text>
-          </View>
+          <TouchableOpacity style={globalStyles.studyCard}>
+            <Text style={globalStyles.studyTitle}>Protein Timing Impact on Muscle Growth</Text>
+            <Text style={globalStyles.studyTime}>15 min read →</Text>
+          </TouchableOpacity>
 
-          <View style={globalStyles.studyCard}>
-            <Text style={globalStyles.category}>EXERCISE SCIENCE</Text>
-            <Text style={globalStyles.studyTitle}>Recovery Methods Effectiveness</Text>
-            <Text style={globalStyles.studyDescription}>Comparative study of various recovery techniques...</Text>
-          </View>
+          <TouchableOpacity style={globalStyles.studyCard}>
+            <Text style={globalStyles.studyTitle}>Sleep Quality and Recovery</Text>
+            <Text style={globalStyles.studyTime}>12 min read →</Text>
+          </TouchableOpacity>
         </View>
+
+        <View style={globalStyles.quickActionsContainer}>
+          <TouchableOpacity style={globalStyles.quickActionButton}>
+            <Icon name="message-circle" size={24} color="#3AA8F7" />
+            <Text style={globalStyles.quickActionText}>Ask an Expert</Text>
+            <Text style={globalStyles.quickActionSubtext}>Get answers from professionals</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={globalStyles.quickActionButton}>
+            <Icon name="bar-chart-2" size={24} color="limegreen" />
+            <Text style={globalStyles.quickActionText}>Your Stats</Text>
+            <Text style={globalStyles.quickActionSubtext}>Track your progress</Text>
+          </TouchableOpacity>
+        </View>
+
       </ScrollView>
     </SafeAreaView>
   );

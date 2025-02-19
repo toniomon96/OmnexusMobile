@@ -152,85 +152,111 @@ export default StyleSheet.create({
     fontSize: 15,
   },
 
-  // Research Article Cards
-  researchCard: {
-    backgroundColor: "#1E3C72",
+  // Points Card
+  pointsContainer: {
+    backgroundColor: "#1A2D50",
     padding: 15,
-    borderRadius: 12,
-    marginBottom: 15, // ✅ More spacing between cards
+    borderRadius: 10,
+    marginTop: 15,
+    justifyContent: "space-between",
   },
-  articleHeader: {
+  
+  pointsRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 8,
   },
-  articleTitle: {
-    fontSize: 18, // ✅ Slightly larger
+  
+  pointsText: {
+    color: "#fff",
+    fontSize: 16,
+  },
+  
+  pointsValue: {
+    color: "#fff",
+    fontSize: 32,
     fontWeight: "bold",
-    color: colors.textWhite,
-    marginBottom: 5,
   },
-  articleSubtitle: {
+  
+  levelBadge: {
+    backgroundColor: "#007BFF",
+    borderRadius: 5,
+    paddingVertical: 5,
+    paddingHorizontal: 12,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  
+  levelText: {
+    color: "#fff",
     fontSize: 14,
-    color: "#D3D3D3",
-    lineHeight: 20, // ✅ More readable
-    marginBottom: 8,
+    fontWeight: "bold",
   },
-  articleDate: {
-    color: "#A0A0A0",
+  
+
+  insightCard: {
+    backgroundColor: "#1A2D50",
+    padding: 15,
+    borderRadius: 10,
+    marginTop: 15,
+  },
+  
+  insightHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  
+  insightTitle: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  
+  newText: {
+    color: "green",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  
+  insightText: {
+    color: "#fff",
+    marginTop: 10,
+  },
+  
+  readMore: {
+    color: "#007BFF",
+    marginTop: 5,
+  },
+
+  quickActionsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 20,
+  },
+  
+  quickActionButton: {
+    flex: 1,
+    backgroundColor: "#1A2D50",
+    paddingVertical: 15,
+    borderRadius: 10,
+    alignItems: "center",
+    marginHorizontal: 5,
+  },
+  
+  quickActionText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+    marginTop: 8,
+  },
+  
+  quickActionSubtext: {
+    color: "#B0BEC5",
     fontSize: 12,
-    marginBottom: 5,
+    marginTop: 4,
+    textAlign: "center",
+    paddingHorizontal: 10,
   },
-
-  // Research Article Tags
-  tagPlatinum: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#00FF7F",
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 8,
-    alignSelf: "flex-start",
-    marginBottom: 5,
-  },
-  tagGold: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#FFD700",
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 8,
-    alignSelf: "flex-start",
-    marginBottom: 5,
-  },
-  tagText: {
-    color: colors.textWhite,
-    fontWeight: "bold",
-    fontSize: 14, // ✅ Bolder & Larger
-    marginRight: 5,
-  },
-
-  // Icons for Research Articles (Bookmark & Share)
-  articleIcons: {
-    flexDirection: "row",
-  },
-  iconSpacing: {
-    marginLeft: 10, // ✅ Space between icons
-  },
-
-  // Read More Button (Bigger & Aligned)
-  readMoreButton: {
-    alignSelf: "flex-start",
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    backgroundColor: colors.primaryBlue,
-    borderRadius: 8,
-    marginTop: 10, // ✅ Better spacing
-  },
-  readMoreText: {
-    color: colors.textWhite,
-    fontSize: 15, // ✅ Slightly larger
-    fontWeight: "bold",
-  },
+  
 });

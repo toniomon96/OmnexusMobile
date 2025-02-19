@@ -6,9 +6,7 @@ import StudyScreen from "../screens/StudyScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import CommunityScreen from "../screens/CommunityScreen";
 import { Ionicons } from "@expo/vector-icons";
-import { Text } from "react-native";
-import globalStyles from "../styles/globalStyles"; // Import global styles
-import LearningPathsScreen from "../screens/LearningScreen";
+import globalStyles from "../styles/globalStyles";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,12 +16,12 @@ export default function AppNavigator() {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarStyle: {
-            ...globalStyles.navbar,
-            borderTopWidth: 0, // ✅ Removes the thin white line
-            elevation: 0, // ✅ Removes any shadow on Android
-            shadowOpacity: 0, // ✅ Removes shadow on iOS
+            backgroundColor: "#0A1931",
+            height: 60, // ✅ Adjusted height for alignment
+            borderTopWidth: 0, 
+            paddingBottom: 8, // ✅ Prevents text from cutting off
           },
-          tabBarIcon: ({ focused }) => {
+          tabBarIcon: ({ focused, color, size }) => {
             let iconName;
             if (route.name === "Home") {
               iconName = focused ? "home" : "home-outline";
@@ -36,19 +34,21 @@ export default function AppNavigator() {
             } else if (route.name === "Profile") {
               iconName = focused ? "person" : "person-outline";
             }
-            return <Ionicons name={iconName} size={24} color={focused ? "#009EFF" : "gray"} />;
+            return <Ionicons name={iconName} size={24} color={focused ? "#009EFF" : "#B0BEC5"} />;
           },
-          tabBarLabel: ({ focused, children }) => (
-            <Text style={focused ? globalStyles.navTextActive : globalStyles.navTextInactive}>
-              {children}
-            </Text>
-          ),
-          headerShown: false, // ✅ Hides default screen headers
+          tabBarLabelStyle: {
+            fontSize: 12, 
+            fontWeight: "600", 
+            marginTop: 0, // ✅ Prevents text misalignment
+          },
+          tabBarActiveTintColor: "#009EFF",
+          tabBarInactiveTintColor: "#B0BEC5",
+          headerShown: false,
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Research" component={ResearchScreen} />
-        <Tab.Screen name="Learn" component={LearningPathsScreen} />
+        <Tab.Screen name="Learn" component={StudyScreen} />
         <Tab.Screen name="Community" component={CommunityScreen} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
