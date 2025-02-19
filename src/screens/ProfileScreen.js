@@ -1,33 +1,24 @@
 import React from "react";
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, Text, ScrollView } from "react-native";
 import globalStyles from "../styles/globalStyles";
 
 export default function ProfileScreen() {
   return (
-    <ScrollView style={globalStyles.container}>
-      <Text style={globalStyles.title}>Profile</Text>
-      <View style={globalStyles.profileContainer}>
-        <Ionicons name="person-circle-outline" size={80} color="gray" />
-        <Text style={globalStyles.username}>Alex</Text>
-        <Text style={globalStyles.email}>alex@example.com</Text>
-        <View style={globalStyles.infoBox}>
-          <Ionicons name="calendar-outline" size={20} color="gray" />
-          <Text>Member since: January 2024</Text>
+    <View style={globalStyles.safeContainer}>
+      <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
+        {/* User Info */}
+        <View style={globalStyles.card}>
+          <Text style={globalStyles.cardTitle}>Sarah Mitchell</Text>
+          <Text style={globalStyles.cardSubtitle}>Member since Jan 2025</Text>
         </View>
-        <View style={globalStyles.infoBox}>
-          <Ionicons name="barbell-outline" size={20} color="gray" />
-          <Text>Fitness Level: Intermediate</Text>
+
+        {/* Recent Activity */}
+        <Text style={globalStyles.sectionTitle}>Recent Activity</Text>
+        <View style={globalStyles.card}>
+          <Text style={globalStyles.cardTitle}>Completed Research Module</Text>
+          <Text style={globalStyles.cardSubtitle}>2 hours ago</Text>
         </View>
-        <View style={globalStyles.infoBox}>
-          <Ionicons name="time-outline" size={20} color="gray" />
-          <Text>Preferred Workout Time: Evenings</Text>
-        </View>
-        <TouchableOpacity style={globalStyles.editButton}>
-          <Ionicons name="create-outline" size={20} color="white" />
-          <Text style={globalStyles.editButtonText}>Edit Profile</Text>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }

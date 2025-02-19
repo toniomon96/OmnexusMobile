@@ -1,71 +1,78 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, Text, ScrollView, TouchableOpacity, TextInput } from "react-native";
+import Icon from "react-native-vector-icons/Feather";
 import globalStyles from "../styles/globalStyles";
 
 export default function ResearchScreen() {
   return (
-    <ScrollView style={globalStyles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Research Hub</Text>
-        <TouchableOpacity>
-          <Ionicons name="notifications-outline" size={24} color="black" />
-        </TouchableOpacity>
-      </View>
-      
-      <TextInput style={styles.searchBar} placeholder="Search research..." />
-      
-      <View style={styles.tabs}>
-        <Text style={[styles.tab, styles.activeTab]}>Fitness</Text>
-        <Text style={styles.tab}>Nutrition</Text>
-        <Text style={styles.tab}>Health</Text>
-      </View>
-      
-      <View style={styles.researchCard}>
-        <Text style={styles.badge}>Platinum</Text>
-        <Text style={styles.cardTitle}>Impact of High-Intensity Interval Training on Muscle Growth</Text>
-        <Text style={styles.cardDescription}>A comprehensive meta-analysis of 50 studies examining the effectiveness of HIIT...</Text>
-        <Text style={styles.cardDate}>📅 Published Jan 2025</Text>
-        <View style={styles.cardActions}>
-          <TouchableOpacity>
-            <Ionicons name="bookmark-outline" size={24} color="black" />
+    <View style={globalStyles.safeContainer}>
+      <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
+        {/* Header */}
+        <View style={globalStyles.researchHeader}>
+          <Text style={globalStyles.sectionTitle}>Research Hub</Text>
+          <View style={globalStyles.headerIcons}>
+            <Icon name="bell" size={24} color="#fff" />
+          </View>
+        </View>
+
+        {/* Search Bar */}
+        <View style={globalStyles.searchBarContainer}>
+          <Icon name="search" size={20} color="#A0A0A0" style={globalStyles.searchIcon} />
+          <TextInput 
+            placeholder="Search research articles..." 
+            placeholderTextColor="#A0A0A0"
+            style={globalStyles.searchInput} 
+          />
+        </View>
+
+        {/* Filters */}
+        <View style={globalStyles.filterContainer}>
+          <TouchableOpacity style={globalStyles.filterButtonActive}>
+            <Text style={globalStyles.filterTextActive}>Fitness</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Ionicons name="share-outline" size={24} color="black" />
+          <TouchableOpacity style={globalStyles.filterButtonInactive}>
+            <Text style={globalStyles.filterTextInactive}>Nutrition</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={globalStyles.filterButtonInactive}>
+            <Text style={globalStyles.filterTextInactive}>Health</Text>
           </TouchableOpacity>
         </View>
-      </View>
-      
-      <View style={styles.researchCard}>
-        <Text style={styles.badgeGold}>Gold ⭐</Text>
-        <Text style={styles.cardTitle}>Protein Timing and Muscle Recovery</Text>
-        <Text style={styles.cardDescription}>Double-blind randomized controlled trial investigating optimal protein intake...</Text>
-        <Text style={styles.cardDate}>📅 Published Feb 2025</Text>
-        <View style={styles.cardActions}>
-          <TouchableOpacity>
-            <Ionicons name="bookmark-outline" size={24} color="black" />
+
+        {/* Sorting Options */}
+        <View style={globalStyles.sortContainer}>
+          <TouchableOpacity style={globalStyles.sortButton}>
+            <Text style={globalStyles.sortText}>Relevance</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Ionicons name="share-outline" size={24} color="black" />
+          <TouchableOpacity style={globalStyles.sortButton}>
+            <Text style={globalStyles.sortText}>Latest</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={globalStyles.sortButton}>
+            <Text style={globalStyles.sortText}>Popular</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={globalStyles.sortButton}>
+            <Text style={globalStyles.sortText}>Credibility</Text>
           </TouchableOpacity>
         </View>
-      </View>
-    </ScrollView>
+
+        {/* Research Articles */}
+        <View style={globalStyles.researchCard}>
+          <View style={globalStyles.articleHeader}>
+            <View style={globalStyles.tagPlatinum}>
+              <Text style={globalStyles.tagText}>Platinum</Text>
+              <Icon name="microscope" size={14} color="#fff" />
+            </View>
+            <View style={globalStyles.articleIcons}>
+              <Icon name="bookmark" size={20} color="#fff" style={globalStyles.iconSpacing} />
+              <Icon name="share-2" size={20} color="#fff" style={globalStyles.iconSpacing} />
+            </View>
+          </View>
+          <Text style={globalStyles.articleTitle}>Impact of HIIT on Muscle Growth</Text>
+          <Text style={globalStyles.articleSubtitle}>Latest systematic review analyzing the effectiveness of HIIT...</Text>
+          <TouchableOpacity style={globalStyles.readMoreButton}>
+            <Text style={globalStyles.readMoreText}>Read More</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 20 },
-  title: { fontSize: 20, fontWeight: "bold" },
-  searchBar: { backgroundColor: "#f0f0f0", padding: 10, borderRadius: 8, marginBottom: 15 },
-  tabs: { flexDirection: "row", marginBottom: 15 },
-  tab: { fontSize: 16, color: "#777", marginRight: 20 },
-  activeTab: { fontWeight: "bold", textDecorationLine: "underline" },
-  researchCard: { backgroundColor: "#1A1A2E", padding: 15, borderRadius: 10, marginBottom: 15 },
-  badge: { color: "#fff", backgroundColor: "#3b5998", padding: 5, borderRadius: 5, alignSelf: "flex-start" },
-  badgeGold: { color: "#FFD700", fontWeight: "bold", alignSelf: "flex-start" },
-  cardTitle: { color: "#fff", fontSize: 18, fontWeight: "bold", marginVertical: 5 },
-  cardDescription: { color: "#B0B0B0", fontSize: 14 },
-  cardDate: { color: "#B0B0B0", fontSize: 12, marginTop: 5 },
-  cardActions: { flexDirection: "row", justifyContent: "space-between", marginTop: 10 },
-});

@@ -1,33 +1,31 @@
 import React from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
-import { FontAwesome5, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import globalStyles from "../styles/globalStyles"; // Ensure correct path
-
-const communityData = [
-  { id: "1", title: "Discussions", icon: "comments", iconLib: FontAwesome5 },
-  { id: "2", title: "Q&A", icon: "help-circle-outline", iconLib: Ionicons },
-  { id: "3", title: "Challenges", icon: "trophy", iconLib: FontAwesome5 },
-  { id: "4", title: "Mentorship", icon: "account-tie", iconLib: MaterialCommunityIcons },
-  { id: "5", title: "Events", icon: "calendar", iconLib: FontAwesome5 },
-];
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import Icon from "react-native-vector-icons/Feather";
+import globalStyles from "../styles/globalStyles";
 
 export default function CommunityScreen() {
-  const renderItem = ({ item }) => (
-    <TouchableOpacity style={globalStyles.communityItem} accessibilityLabel={`Open ${item.title}`}>
-      <item.iconLib name={item.icon} size={28} color="#009EFF" style={globalStyles.communityIcon} />
-      <Text style={globalStyles.communityItemText}>{item.title}</Text>
-    </TouchableOpacity>
-  );
-
   return (
-    <View style={globalStyles.container}>
-      <Text style={globalStyles.heading}>Community</Text>
-      <FlatList
-        data={communityData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={globalStyles.list}
-      />
+    <View style={globalStyles.safeContainer}>
+      <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
+        {/* Header */}
+        <View style={globalStyles.header}>
+          <Text style={globalStyles.sectionTitle}>Community</Text>
+          <View style={globalStyles.headerIcons}>
+            <Icon name="search" size={24} color="#fff" />
+            <Icon name="bell" size={24} color="#fff" style={{ marginLeft: 15 }} />
+          </View>
+        </View>
+
+        {/* Active Discussions */}
+        <Text style={globalStyles.sectionTitle}>Active Discussions</Text>
+        <View style={globalStyles.card}>
+          <Text style={globalStyles.cardTitle}>Best Post-Workout Nutrition</Text>
+          <Text style={globalStyles.cardSubtitle}>Started by Dr. James • 2h ago</Text>
+          <TouchableOpacity>
+            <Text style={globalStyles.buttonText}>Join Discussion</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 }

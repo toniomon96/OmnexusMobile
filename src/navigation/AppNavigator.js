@@ -8,6 +8,7 @@ import CommunityScreen from "../screens/CommunityScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { Text } from "react-native";
 import globalStyles from "../styles/globalStyles"; // Import global styles
+import LearningPathsScreen from "../screens/LearningScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -47,7 +48,7 @@ export default function AppNavigator() {
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Research" component={ResearchScreen} />
-        <Tab.Screen name="Learn" component={StudyScreen} />
+        <Tab.Screen name="Learn" component={LearningPathsScreen} />
         <Tab.Screen name="Community" component={CommunityScreen} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
