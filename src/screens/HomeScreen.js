@@ -19,7 +19,7 @@ export default function HomeScreen() {
           <Text style={globalStyles.greeting}>Hi, {userName}</Text>
           <View style={globalStyles.headerIcons}>
             <View style={globalStyles.energyContainer}>
-              <Icon name="zap" size={18} color="green" />
+              <Icon name="zap" size={18} color="#32CD32" />
               <Text style={globalStyles.energyCount}>{energyCount}</Text>
             </View>
             <TouchableOpacity>
@@ -55,16 +55,6 @@ export default function HomeScreen() {
           <TouchableOpacity>
             <Text style={globalStyles.readMore}>Read More</Text>
           </TouchableOpacity>
-        </View>
-
-
-        {/* Total Points */}
-        <View style={globalStyles.pointsContainer}>
-          <Text style={globalStyles.pointsText}>Total Points</Text>
-          <Text style={globalStyles.pointsValue}>2,450</Text>
-          <View style={globalStyles.levelBadge}>
-            <Text style={globalStyles.levelText}>Level 8</Text>
-          </View>
         </View>
 
         {/* Learning Progress */}
