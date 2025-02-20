@@ -1,8 +1,8 @@
-import React from "react";
+import { React, useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView, SafeAreaView, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/Feather"; 
-import { FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome5, Ionicons  } from "@expo/vector-icons";
 import ProgressBar from "../styles/progressBarStyles"; // Import updated ProgressBar component
 import {
   globalStyles,
@@ -18,6 +18,7 @@ export default function HomeScreen() {
   const navigation = useNavigation();
   const userName = "Toni"; 
   const energyCount = 12;
+  const [saved, setSaved] = useState(false);
 
   return (
     <SafeAreaView style={globalStyles.safeContainer}> 
@@ -67,12 +68,30 @@ export default function HomeScreen() {
             <Text style={insightStyles.title}>Daily Insight</Text>
             <Text style={insightStyles.newText}>New</Text> 
           </View>
+
           <Text style={insightStyles.text}>
             Recent study shows high-intensity interval training (HIIT) improves 
             cognitive function in adults aged 30-45.
           </Text>
+
           <TouchableOpacity>
             <Text style={insightStyles.readMore}>Read More</Text>
+          </TouchableOpacity>
+
+          {/* Save (Bookmark) Icon */}
+          <TouchableOpacity 
+            onPress={() => setSaved(!saved)}
+            style={{
+              position: "absolute",
+              bottom: 10,
+              right: 10,
+            }}
+          >
+            <Ionicons 
+              name={saved ? "bookmark" : "bookmark-outline"} 
+              size={22} 
+              color={saved ? "#FFD700" : "#B0BEC5"} // Gold when saved
+            />
           </TouchableOpacity>
         </View>
 

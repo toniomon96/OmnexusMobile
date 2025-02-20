@@ -5,9 +5,10 @@ import {
   TextInput, 
   TouchableOpacity, 
   ScrollView, 
-  FlatList 
+  FlatList, 
+  Share 
 } from "react-native";
-import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { globalStyles, colors, headerStyles } from "../styles/globalStyles"; 
 
 const researchArticles = [
@@ -38,6 +39,26 @@ const ResearchScreen = () => {
   const [selectedCategory, setSelectedCategory] = useState("Fitness");
   const [selectedSort, setSelectedSort] = useState("Relevance");
   const [searchQuery, setSearchQuery] = useState("");
+  const [savedArticles, setSavedArticles] = useState({}); // Track saved articles
+
+  // Toggle Save (Bookmark) Function
+  const toggleSave = (id) => {
+    setSavedArticles((prev) => ({
+      ...prev,
+      [id]: !prev[id], // Toggle save state
+    }));
+  };
+
+  // Share Study Function
+  const onShare = async (item) => {
+    try {
+      await Share.share({
+        message: `Check out this study: ${item.title}\n\n${item.description}\n\nPublished: ${item.published}`,
+      });
+    } catch (error) {
+      console.error("Error sharing study:", error);
+    }
+  };
 
   return (
     <View style={globalStyles.safeContainer}>
@@ -61,7 +82,7 @@ const ResearchScreen = () => {
           alignItems: "center",
           marginHorizontal: 20,
           marginBottom: 10,
-          height: 45, // Consistent height
+          height: 45,
         }}
       >
         <Ionicons name="search" size={20} color={colors.textWhite} />
@@ -78,49 +99,48 @@ const ResearchScreen = () => {
         />
       </View>
 
- {/* Category Filters */}
- <View style={{ flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 20, marginBottom: 10 }}>
-  {categories.map((category) => (
-    <TouchableOpacity
-      key={category}
-      style={{
-        backgroundColor: selectedCategory === category ? colors.primaryBlue : colors.cardDark,
-        paddingVertical: 10,
-        paddingHorizontal: 8,
-        borderRadius: 10,
-        flex: 1,
-        marginHorizontal: 4, // Spacing between buttons
-        alignItems: "center",
-      }}
-      onPress={() => setSelectedCategory(category)}
-    >
-      <Text style={{ color: colors.textWhite, fontSize: 14 }}>{category}</Text>
-    </TouchableOpacity>
-  ))}
-</View>
+      {/* Category Filters */}
+      <View style={{ flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 20, marginBottom: 10 }}>
+        {categories.map((category) => (
+          <TouchableOpacity
+            key={category}
+            style={{
+              backgroundColor: selectedCategory === category ? colors.primaryBlue : colors.cardDark,
+              paddingVertical: 10,
+              paddingHorizontal: 8,
+              borderRadius: 10,
+              flex: 1,
+              marginHorizontal: 4,
+              alignItems: "center",
+            }}
+            onPress={() => setSelectedCategory(category)}
+          >
+            <Text style={{ color: colors.textWhite, fontSize: 14 }}>{category}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
 
-{/* Sorting Options */}
-<View style={{ flexDirection: "row", justifyContent: "space-around", paddingHorizontal: 20, marginBottom: 10 }}>
-  {sortOptions.map((option) => (
-    <TouchableOpacity
-      key={option}
-      style={{
-        backgroundColor: selectedSort === option ? colors.primaryDarkBlue : colors.cardDark,
-        paddingVertical: 6,
-        paddingHorizontal: 10,
-        borderRadius: 8,
-        flex: 1,
-        maxWidth: 100, // Make the buttons thinner
-        alignItems: "center",
-        marginHorizontal: 3, // Spacing between buttons
-      }}
-      onPress={() => setSelectedSort(option)}
-    >
-      <Text style={{ color: colors.textWhite, fontSize: 13 }}>{option}</Text>
-    </TouchableOpacity>
-  ))}
-</View>
-
+      {/* Sorting Options */}
+      <View style={{ flexDirection: "row", justifyContent: "space-around", paddingHorizontal: 20, marginBottom: 10 }}>
+        {sortOptions.map((option) => (
+          <TouchableOpacity
+            key={option}
+            style={{
+              backgroundColor: selectedSort === option ? colors.primaryDarkBlue : colors.cardDark,
+              paddingVertical: 6,
+              paddingHorizontal: 10,
+              borderRadius: 8,
+              flex: 1,
+              maxWidth: 100,
+              alignItems: "center",
+              marginHorizontal: 3,
+            }}
+            onPress={() => setSelectedSort(option)}
+          >
+            <Text style={{ color: colors.textWhite, fontSize: 13 }}>{option}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
 
       {/* Research Articles List */}
       <FlatList
@@ -134,8 +154,34 @@ const ResearchScreen = () => {
               padding: 15,
               borderRadius: 10,
               marginBottom: 15,
+              position: "relative", // Needed for absolute positioning of icons
             }}
           >
+            {/* Share & Save Icons */}
+            <View
+              style={{
+                position: "absolute",
+                top: 12,
+                right: 12,
+                flexDirection: "row",
+                gap: 10,
+              }}
+            >
+              {/* Save Button */}
+              <TouchableOpacity onPress={() => toggleSave(item.id)}>
+                <Ionicons
+                  name={savedArticles[item.id] ? "bookmark" : "bookmark-outline"}
+                  size={20}
+                  color={savedArticles[item.id] ? "#FFD700" : "#B0BEC5"} // Gold when saved
+                />
+              </TouchableOpacity>
+
+              {/* Share Button */}
+              <TouchableOpacity onPress={() => onShare(item)}>
+                <Ionicons name="share-outline" size={20} color="#B0BEC5" />
+              </TouchableOpacity>
+            </View>
+
             {/* Credibility Tier */}
             <View
               style={{
@@ -152,8 +198,6 @@ const ResearchScreen = () => {
               <Text style={{ color: "#000", fontWeight: "bold", fontSize: 13, marginRight: 5 }}>
                 {item.tier}
               </Text>
-              
-              {/* Dynamic Icon Replacement */}
               {item.tier === "Platinum" ? (
                 <Ionicons name="diamond-outline" size={14} color="#000" />
               ) : item.tier === "Gold" ? (
@@ -161,7 +205,7 @@ const ResearchScreen = () => {
               ) : null}
             </View>
 
-            {/* Article Title & Description */}
+            {/* Study Title & Description */}
             <Text style={{ color: colors.textWhite, fontSize: 16, fontWeight: "bold", marginTop: 5 }}>
               {item.title}
             </Text>
