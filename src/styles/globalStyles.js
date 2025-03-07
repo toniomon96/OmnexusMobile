@@ -14,7 +14,7 @@ const colors = {
 // Global Styles
 const globalStyles = StyleSheet.create({
   safeContainer: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: colors.backgroundDark,
     paddingTop: 70,
   },
@@ -22,6 +22,11 @@ const globalStyles = StyleSheet.create({
     flexGrow: 1,
     paddingHorizontal: 20,
     paddingBottom: 80,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: colors.backgroundDark,
+    paddingHorizontal: 20,
   },
 });
 
@@ -238,3 +243,5 @@ export {
   pointsStyles,
   quickActionStyles,
 };
+
+export default globalStyles;

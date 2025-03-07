@@ -5,6 +5,34 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "platforms": ["ios", "android"],
-    "entryPoint": "./index.js"
+    "entryPoint": "./index.js",
+    "description": "A mobile app for accessing credible scientific studies, learning courses, and personalized health insights.",
+    "scheme": "omnexus",
+    "newArchEnabled": true,
+    "icon": "./src/assets/icon.png", 
+    "splash": {
+      "image": "./src/assets/splash.png", 
+      "resizeMode": "contain",
+      "backgroundColor": "#162D50"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 30000
+    },
+    "assetBundlePatterns": [
+      "src/**/*" 
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "io.omnexus.omnexusmobile",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/adaptive-icon-foreground.png",
+        "backgroundColor": "#162D50"
+      },
+      "package": "io.omnexus.omnexusmobile",
+      "versionCode": 1
+    }
   }
 }

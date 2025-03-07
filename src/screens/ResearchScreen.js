@@ -1,62 +1,60 @@
-import React, { useState } from "react";
-import { 
-  View, 
-  Text, 
-  TextInput, 
-  TouchableOpacity, 
-  ScrollView, 
-  FlatList, 
-  Share 
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { globalStyles, colors, headerStyles } from "../styles/globalStyles"; 
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+  FlatList,
+  Share,
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { globalStyles, colors, headerStyles } from '../styles/globalStyles';
 
 const researchArticles = [
   {
-    id: "1",
-    title: "Impact of High-Intensity Interval Training on Muscle Growth",
+    id: '1',
+    title: 'Impact of High-Intensity Interval Training on Muscle Growth',
     description:
-      "Latest systematic review analyzing the effectiveness of HIIT on muscle hypertrophy compared to traditional training methods.",
-    published: "Mar 15, 2025",
-    tier: "Platinum",
+      'Latest systematic review analyzing the effectiveness of HIIT on muscle hypertrophy compared to traditional training methods.',
+    published: 'Mar 15, 2025',
+    tier: 'Platinum',
     tierColor: colors.primaryGreen,
   },
   {
-    id: "2",
-    title: "Protein Timing and Muscle Recovery",
+    id: '2',
+    title: 'Protein Timing and Muscle Recovery',
     description:
-      "Double-blind RCT examining optimal protein intake windows for maximizing post-workout muscle protein synthesis.",
-    published: "Mar 10, 2025",
-    tier: "Gold",
-    tierColor: "#FFD700",
+      'Double-blind RCT examining optimal protein intake windows for maximizing post-workout muscle protein synthesis.',
+    published: 'Mar 10, 2025',
+    tier: 'Gold',
+    tierColor: '#FFD700',
   },
 ];
 
-const categories = ["Fitness", "Nutrition", "Health"];
-const sortOptions = ["Relevance", "Latest", "Popular", "Credibility"];
+const categories = ['Fitness', 'Nutrition', 'Health'];
+const sortOptions = ['Relevance', 'Latest', 'Popular', 'Credibility'];
 
-const ResearchScreen = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Fitness");
-  const [selectedSort, setSelectedSort] = useState("Relevance");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [savedArticles, setSavedArticles] = useState({}); // Track saved articles
+const ResearchScreen = ({ navigation }) => {
+  const [selectedCategory, setSelectedCategory] = useState('Fitness');
+  const [selectedSort, setSelectedSort] = useState('Relevance');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [savedArticles, setSavedArticles] = useState({});
 
-  // Toggle Save (Bookmark) Function
   const toggleSave = (id) => {
     setSavedArticles((prev) => ({
       ...prev,
-      [id]: !prev[id], // Toggle save state
+      [id]: !prev[id],
     }));
   };
 
-  // Share Study Function
   const onShare = async (item) => {
     try {
       await Share.share({
         message: `Check out this study: ${item.title}\n\n${item.description}\n\nPublished: ${item.published}`,
       });
     } catch (error) {
-      console.error("Error sharing study:", error);
+      console.error('Error sharing study:', error);
     }
   };
 
@@ -75,11 +73,11 @@ const ResearchScreen = () => {
       {/* Search Bar */}
       <View
         style={{
-          flexDirection: "row",
+          flexDirection: 'row',
           backgroundColor: colors.cardDark,
           borderRadius: 8,
           paddingHorizontal: 15,
-          alignItems: "center",
+          alignItems: 'center',
           marginHorizontal: 20,
           marginBottom: 10,
           height: 45,
@@ -100,7 +98,7 @@ const ResearchScreen = () => {
       </View>
 
       {/* Category Filters */}
-      <View style={{ flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 20, marginBottom: 10 }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, marginBottom: 10 }}>
         {categories.map((category) => (
           <TouchableOpacity
             key={category}
@@ -111,7 +109,7 @@ const ResearchScreen = () => {
               borderRadius: 10,
               flex: 1,
               marginHorizontal: 4,
-              alignItems: "center",
+              alignItems: 'center',
             }}
             onPress={() => setSelectedCategory(category)}
           >
@@ -121,7 +119,7 @@ const ResearchScreen = () => {
       </View>
 
       {/* Sorting Options */}
-      <View style={{ flexDirection: "row", justifyContent: "space-around", paddingHorizontal: 20, marginBottom: 10 }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingHorizontal: 20, marginBottom: 10 }}>
         {sortOptions.map((option) => (
           <TouchableOpacity
             key={option}
@@ -132,7 +130,7 @@ const ResearchScreen = () => {
               borderRadius: 8,
               flex: 1,
               maxWidth: 100,
-              alignItems: "center",
+              alignItems: 'center',
               marginHorizontal: 3,
             }}
             onPress={() => setSelectedSort(option)}
@@ -154,68 +152,66 @@ const ResearchScreen = () => {
               padding: 15,
               borderRadius: 10,
               marginBottom: 15,
-              position: "relative", // Needed for absolute positioning of icons
+              position: 'relative',
             }}
           >
             {/* Share & Save Icons */}
             <View
               style={{
-                position: "absolute",
+                position: 'absolute',
                 top: 12,
                 right: 12,
-                flexDirection: "row",
+                flexDirection: 'row',
                 gap: 10,
               }}
             >
-              {/* Save Button */}
               <TouchableOpacity onPress={() => toggleSave(item.id)}>
                 <Ionicons
-                  name={savedArticles[item.id] ? "bookmark" : "bookmark-outline"}
+                  name={savedArticles[item.id] ? 'bookmark' : 'bookmark-outline'}
                   size={20}
-                  color={savedArticles[item.id] ? "#FFD700" : "#B0BEC5"} // Gold when saved
+                  color={savedArticles[item.id] ? '#FFD700' : '#B0BEC5'}
                 />
               </TouchableOpacity>
-
-              {/* Share Button */}
               <TouchableOpacity onPress={() => onShare(item)}>
                 <Ionicons name="share-outline" size={20} color="#B0BEC5" />
               </TouchableOpacity>
             </View>
 
             {/* Credibility Tier */}
-            <View
+            <TouchableOpacity
+              onPress={() => navigation.navigate('StudyCredibility')}
               style={{
                 backgroundColor: item.tierColor,
                 paddingHorizontal: 10,
                 paddingVertical: 4,
                 borderRadius: 5,
-                alignSelf: "flex-start",
-                flexDirection: "row",
-                alignItems: "center",
+                alignSelf: 'flex-start',
+                flexDirection: 'row',
+                alignItems: 'center',
                 marginBottom: 5,
               }}
             >
-              <Text style={{ color: "#000", fontWeight: "bold", fontSize: 13, marginRight: 5 }}>
+              <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 13, marginRight: 5 }}>
                 {item.tier}
               </Text>
-              {item.tier === "Platinum" ? (
+              {item.tier === 'Platinum' ? (
                 <Ionicons name="diamond-outline" size={14} color="#000" />
-              ) : item.tier === "Gold" ? (
+              ) : item.tier === 'Gold' ? (
                 <Ionicons name="star" size={14} color="#000" />
               ) : null}
-            </View>
+            </TouchableOpacity>
 
             {/* Study Title & Description */}
-            <Text style={{ color: colors.textWhite, fontSize: 16, fontWeight: "bold", marginTop: 5 }}>
+            <Text style={{ color: colors.textWhite, fontSize: 16, fontWeight: 'bold', marginTop: 5 }}>
               {item.title}
             </Text>
             <Text style={{ color: colors.textWhite, marginTop: 5, fontSize: 14 }}>{item.description}</Text>
 
             {/* Published Date & Read More */}
-            <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 10 }}>
-              <Text style={{ color: "#aaa", fontSize: 13 }}>Published: {item.published}</Text>
-              <TouchableOpacity>
-                <Text style={{ color: colors.primaryBlue, fontWeight: "bold", fontSize: 14 }}>Read More</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
+              <Text style={{ color: '#aaa', fontSize: 13 }}>Published: {item.published}</Text>
+              <TouchableOpacity onPress={() => navigation.navigate('StudyDetail', { study: item })}>
+                <Text style={{ color: colors.primaryBlue, fontWeight: 'bold', fontSize: 14 }}>Read More</Text>
               </TouchableOpacity>
             </View>
           </View>

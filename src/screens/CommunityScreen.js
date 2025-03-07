@@ -1,31 +1,37 @@
-import React from "react";
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import Icon from "react-native-vector-icons/Feather";
-import globalStyles from "../styles/globalStyles";
+import React from 'react';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { globalStyles, colors, headerStyles } from '../styles/globalStyles';
 
-export default function CommunityScreen() {
+const communityPosts = [
+  { id: '1', user: 'John Doe', content: 'Just finished a HIIT workout, feeling great!' },
+  { id: '2', user: 'Jane Smith', content: 'Any tips for improving sleep quality?' },
+];
+
+export default function CommunityScreen({ navigation }) {
   return (
     <View style={globalStyles.safeContainer}>
-      <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
-        {/* Header */}
-        <View style={globalStyles.header}>
-          <Text style={globalStyles.sectionTitle}>Community</Text>
-          <View style={globalStyles.headerIcons}>
-            <Icon name="search" size={24} color="#fff" />
-            <Icon name="bell" size={24} color="#fff" style={{ marginLeft: 15 }} />
-          </View>
+      {/* Header */}
+      <View style={[headerStyles.container, { paddingHorizontal: 20 }]}>
+        <View style={headerStyles.greetingContainer}>
+          <Text style={headerStyles.greeting}>Community</Text>
         </View>
+      </View>
 
-        {/* Active Discussions */}
-        <Text style={globalStyles.sectionTitle}>Active Discussions</Text>
-        <View style={globalStyles.card}>
-          <Text style={globalStyles.cardTitle}>Best Post-Workout Nutrition</Text>
-          <Text style={globalStyles.cardSubtitle}>Started by Dr. James • 2h ago</Text>
-          <TouchableOpacity>
-            <Text style={globalStyles.buttonText}>Join Discussion</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+      {/* Community Posts */}
+      <FlatList
+        data={communityPosts}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={globalStyles.scrollContainer}
+        renderItem={({ item }) => (
+          <View style={{ backgroundColor: colors.cardDark, padding: 15, borderRadius: 10, marginBottom: 15 }}>
+            <Text style={{ color: colors.textWhite, fontSize: 16, fontWeight: 'bold' }}>{item.user}</Text>
+            <Text style={{ color: colors.textWhite, marginTop: 5 }}>{item.content}</Text>
+            <TouchableOpacity style={{ marginTop: 10 }}>
+              <Text style={{ color: colors.primaryBlue }}>Comment</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      />
     </View>
   );
 }
