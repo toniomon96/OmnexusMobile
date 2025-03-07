@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { globalStyles, colors } from '../styles/globalStyles';
+import { globalStyles, colors } from '../../styles/globalStyles';
 
-const activities = [
-  { id: '1', title: 'Completed Research Module', time: '2 hours ago', type: 'Module' },
-  { id: '2', title: 'Earned Achievement: Fitness Master', time: 'Yesterday', type: 'Achievement' },
+const recommendedItems = [
+  { id: '1', title: 'Protein Timing Impact on Muscle Growth', type: 'Study', duration: '15 min read' },
+  { id: '2', title: 'Advanced Weight Training', type: 'Course', duration: '4 weeks' },
 ];
 
-export default function ActivityHistoryScreen({ navigation }) {
+export default function RecommendedListScreen({ navigation }) {
   return (
     <View style={globalStyles.safeContainer}>
       {/* Header */}
@@ -17,22 +17,27 @@ export default function ActivityHistoryScreen({ navigation }) {
           <Ionicons name="arrow-back" size={24} color={colors.textWhite} />
         </TouchableOpacity>
         <Text style={{ color: colors.textWhite, fontSize: 20, fontWeight: 'bold', marginLeft: 20 }}>
-          Activity History
+          Recommended
         </Text>
       </View>
 
-      {/* Activity List */}
+      {/* Recommended Items */}
       <FlatList
-        data={activities}
+        data={recommendedItems}
         keyExtractor={(item) => item.id}
         contentContainerStyle={globalStyles.scrollContainer}
         renderItem={({ item }) => (
           <TouchableOpacity
             style={{ backgroundColor: colors.cardDark, padding: 15, borderRadius: 10, marginBottom: 15 }}
-            onPress={() => navigation.navigate(item.type === 'Module' ? 'ModuleDetail' : 'AchievementDetail')}
+            onPress={() =>
+              navigation.navigate(item.type === 'Study' ? 'StudyDetail' : 'CourseDetail', {
+                studyTitle: item.title,
+                courseTitle: item.title,
+              })
+            }
           >
             <Text style={{ color: colors.textWhite, fontSize: 16, fontWeight: 'bold' }}>{item.title}</Text>
-            <Text style={{ color: '#aaa', marginTop: 5 }}>{item.time}</Text>
+            <Text style={{ color: '#aaa', marginTop: 5 }}>{item.duration}</Text>
           </TouchableOpacity>
         )}
       />

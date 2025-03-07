@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
 import { Ionicons } from '@expo/vector-icons';
-import { globalStyles, colors } from '../styles/globalStyles';
+import { globalStyles, colors } from '../../styles/globalStyles';
 
 export default function StudyCredibilityScreen({ navigation }) {
   const [expanded, setExpanded] = useState(null);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { globalStyles, colors } from '../styles/globalStyles';
+import { globalStyles, colors } from '../../styles/globalStyles';
 
 const connectedApps = [
   { id: '1', name: 'Google Fit', connected: true },

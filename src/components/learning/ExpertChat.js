@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { globalStyles, colors } from '../styles/globalStyles';
+import { globalStyles, colors } from '../../styles/globalStyles';
 
 const mockMessages = [
   { id: '1', sender: 'Expert', message: 'Hello! How can I help you today?' },

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { globalStyles, colors } from '../styles/globalStyles';
+import { globalStyles, colors } from '../../styles/globalStyles';
 
 const mockResults = [
   { id: '1', title: 'HIIT and Cognitive Function', type: 'Study' },

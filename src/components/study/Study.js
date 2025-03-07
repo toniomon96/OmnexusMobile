@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, ScrollView, FlatList } from "react-native";
-import globalStyles from "../styles/globalStyles";
+import globalStyles from "../../styles/globalStyles";
 
 export default function StudyScreen() {
   return (

@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { globalStyles, colors } from '../styles/globalStyles';
+import { globalStyles, colors } from '../../styles/globalStyles';
 
-export default function StatsScreen({ navigation }) {
+export default function AchievementDetailScreen({ navigation }) {
   return (
     <View style={globalStyles.safeContainer}>
       <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
@@ -13,19 +13,19 @@ export default function StatsScreen({ navigation }) {
             <Ionicons name="arrow-back" size={24} color={colors.textWhite} />
           </TouchableOpacity>
           <Text style={{ color: colors.textWhite, fontSize: 20, fontWeight: 'bold', marginLeft: 20 }}>
-            Your Stats
+            Achievement Details
           </Text>
         </View>
 
-        {/* Stats Content */}
+        {/* Achievement Content */}
         <View style={{ backgroundColor: colors.cardDark, padding: 15, borderRadius: 10 }}>
-          <Text style={{ color: colors.textWhite, fontSize: 18, fontWeight: 'bold' }}>Progress Overview</Text>
-          <View style={{ marginTop: 10 }}>
-            <Text style={{ color: colors.textWhite }}>Courses Completed: 5</Text>
-            <Text style={{ color: colors.textWhite, marginTop: 5 }}>Average Quiz Score: 85%</Text>
-            <Text style={{ color: colors.textWhite, marginTop: 5 }}>Learning Streak: 12 days</Text>
-          </View>
-          {/* Add charts here using react-native-chart-kit if desired */}
+          <Text style={{ color: colors.textWhite, fontSize: 18, fontWeight: 'bold' }}>
+            Earned: Fitness Master
+          </Text>
+          <Text style={{ color: colors.textWhite, marginTop: 10 }}>
+            You earned this achievement for completing 5 fitness courses.
+          </Text>
+          <Text style={{ color: '#aaa', marginTop: 10 }}>Earned: Yesterday</Text>
         </View>
       </ScrollView>
     </View>

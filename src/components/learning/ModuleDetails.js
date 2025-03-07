@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { globalStyles, colors } from '../styles/globalStyles';
+import { globalStyles, colors } from '../../styles/globalStyles';
 
-export default function RatingSystemDetailScreen({ navigation }) {
+export default function ModuleDetailScreen({ navigation }) {
   return (
     <View style={globalStyles.safeContainer}>
       <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
@@ -13,19 +13,19 @@ export default function RatingSystemDetailScreen({ navigation }) {
             <Ionicons name="arrow-back" size={24} color={colors.textWhite} />
           </TouchableOpacity>
           <Text style={{ color: colors.textWhite, fontSize: 20, fontWeight: 'bold', marginLeft: 20 }}>
-            Rating System Details
+            Module Details
           </Text>
         </View>
 
-        {/* Content */}
+        {/* Module Content */}
         <View style={{ backgroundColor: colors.cardDark, padding: 15, borderRadius: 10 }}>
           <Text style={{ color: colors.textWhite, fontSize: 18, fontWeight: 'bold' }}>
-            Our Rating System
+            Completed: Research Module
           </Text>
           <Text style={{ color: colors.textWhite, marginTop: 10 }}>
-            Our rating system evaluates studies based on several criteria, including methodology, sample size, bias control, and independent validation. Studies are categorized into four tiers: Platinum, Gold, Silver, and Bronze. Each tier reflects the strength and reliability of the research, helping you make informed decisions.
+            You completed this module 2 hours ago. It covered advanced research techniques.
           </Text>
-          {/* Add more detailed content as needed */}
+          <Text style={{ color: '#aaa', marginTop: 10 }}>Completion Date: Today</Text>
         </View>
       </ScrollView>
     </View>

@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../config/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../config/firebase';
 
-const LoginScreen = ({ navigation }) => {
+const AccountCreationScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleLogin = async () => {
+  const handleSignUp = async () => {
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      // Navigation to MainApp is handled by AppNavigator
+      await createUserWithEmailAndPassword(auth, email, password);
+      navigation.navigate('Preferences');
     } catch (error) {
       alert(error.message);
     }
@@ -18,7 +23,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Log In to Omnexus</Text>
+      <Text style={styles.title}>Create Your Account</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -35,11 +40,19 @@ const LoginScreen = ({ navigation }) => {
         value={password}
         onChangeText={setPassword}
       />
-      <Button title="Log In" color="#007BFF" onPress={handleLogin} />
-      <TouchableOpacity onPress={() => navigation.navigate('AccountCreation')}>
-        <Text style={styles.signupText}>
-          Don't have an account?{' '}
-          <Text style={styles.signupLink}>Sign Up</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Confirm Password"
+        placeholderTextColor="#888"
+        secureTextEntry
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+      />
+      <Button title="Sign Up" color="#007BFF" onPress={handleSignUp} />
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <Text style={styles.loginText}>
+          Already have an account?{' '}
+          <Text style={styles.loginLink}>Log In</Text>
         </Text>
       </TouchableOpacity>
     </View>
@@ -64,15 +77,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginVertical: 10,
   },
-  signupText: {
+  loginText: {
     color: 'white',
     marginTop: 20,
     textAlign: 'center',
   },
-  signupLink: {
+  loginLink: {
     color: '#007BFF',
     fontWeight: 'bold',
   },
 });
 
-export default LoginScreen;
+export default AccountCreationScreen;
