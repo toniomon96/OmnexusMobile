@@ -32,7 +32,7 @@ import AchievementDetailScreen from '../components/user/AchievementDetails';
 import NotificationSettingsScreen from '../components/profile/NotificationSettings';
 import ConnectedAppsScreen from '../components/profile/ConnectedApps';
 import ActivityHistoryScreen from '../components/user/ActivityHistory';
-import TopicListScreen from '../components/research/TopicListsjs';
+import TopicListScreen from '../components/research/TopicLists.js';
 import { Ionicons } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
